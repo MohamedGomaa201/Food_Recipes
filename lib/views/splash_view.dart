@@ -56,10 +56,10 @@ class SplashView extends StatelessWidget {
                   backgroundColor: WidgetStatePropertyAll(mainColor),
                 ),
                 onPressed: () {
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(builder: (context) => SigninView()),
-                  // );
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SigninView()),
+                  );
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
