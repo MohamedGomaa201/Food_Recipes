@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_recipes/core/constants/app_images.dart';
 import 'package:food_recipes/core/shared%20widgets/custom_app_button.dart';
-import 'package:food_recipes/core/themes/app_colors.dart';
 import 'package:food_recipes/core/themes/styles.dart';
 import 'package:food_recipes/features/auth/presentation/view/signin_view.dart';
 
