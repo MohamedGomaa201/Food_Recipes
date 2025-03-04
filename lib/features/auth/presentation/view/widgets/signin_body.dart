@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:food_recipes/core/constants/app_images.dart';
 import 'package:food_recipes/core/themes/styles.dart';
 import 'package:food_recipes/core/shared%20widgets/custom_app_button.dart';
 import 'package:food_recipes/features/auth/presentation/view/signup_view.dart';
 import 'package:food_recipes/features/auth/presentation/view/widgets/custom_text_field.dart';
 import 'package:food_recipes/features/auth/presentation/view/widgets/non_clickable_with_clickable_text.dart';
-import 'package:food_recipes/features/auth/presentation/view/widgets/social_media_button.dart';
+import 'package:food_recipes/features/auth/presentation/view/widgets/row_of_social_auth_buttons.dart';
 import 'package:food_recipes/features/auth/presentation/view/widgets/text_inside_divider.dart';
 
 class SigninBody extends StatelessWidget {
@@ -16,8 +15,7 @@ class SigninBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 65.h),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: ListView(
         children: [
           Text(
             "Hello,",
@@ -38,14 +36,7 @@ class SigninBody extends StatelessWidget {
           SizedBox(height: 20.h),
           TextInsideDivider(text: "Or Sign in With"),
           SizedBox(height: 20.h),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SocialMediaButton(icon: AppImages.googleIcon, onTap: () {}),
-              SizedBox(width: 25.w),
-              SocialMediaButton(icon: AppImages.facebookIcon, onTap: () {}),
-            ],
-          ),
+          RowOfSocialAuthButtons(),
           SizedBox(height: 55.h),
           NonClickableWithClickableText(
             nonClickable: "Don't have an account?",

@@ -9,7 +9,7 @@ class SocialMediaButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      elevation: 8,
+      elevation: 2,
       borderRadius: BorderRadius.circular(10.w),
       child: InkWell(
         borderRadius: BorderRadius.circular(6.w),
