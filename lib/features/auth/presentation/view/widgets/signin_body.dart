@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_recipes/core/constants/app_images.dart';
 import 'package:food_recipes/core/themes/styles.dart';
 import 'package:food_recipes/core/shared%20widgets/custom_app_button.dart';
+import 'package:food_recipes/features/auth/presentation/view/signup_view.dart';
 import 'package:food_recipes/features/auth/presentation/view/widgets/custom_text_field.dart';
 import 'package:food_recipes/features/auth/presentation/view/widgets/non_clickable_with_clickable_text.dart';
 import 'package:food_recipes/features/auth/presentation/view/widgets/social_media_button.dart';
@@ -33,7 +34,7 @@ class SigninBody extends StatelessWidget {
             child: Text("Forget Password?", style: Styles.textStyleSecColor13),
           ),
           SizedBox(height: 30.h),
-          CustomAppButton(text: "Sign In", onPressed: () {}, height: 65,),
+          CustomAppButton(text: "Sign In", onPressed: () {}, height: 65),
           SizedBox(height: 20.h),
           TextInsideDivider(text: "Or Sign in With"),
           SizedBox(height: 20.h),
@@ -49,11 +50,15 @@ class SigninBody extends StatelessWidget {
           NonClickableWithClickableText(
             nonClickable: "Don't have an account?",
             clickable: "Sign up",
+            onTap: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => SignupView()),
+              );
+            },
           ),
         ],
       ),
     );
   }
 }
-
-
