@@ -7,6 +7,7 @@ import 'package:food_recipes/features/auth/presentation/view/widgets/custom_text
 import 'package:food_recipes/features/auth/presentation/view/widgets/non_clickable_with_clickable_text.dart';
 import 'package:food_recipes/features/auth/presentation/view/widgets/row_of_social_auth_buttons.dart';
 import 'package:food_recipes/features/auth/presentation/view/widgets/text_inside_divider.dart';
+import 'package:food_recipes/features/home/presentation/view/home_view.dart';
 
 class SigninBody extends StatelessWidget {
   const SigninBody({super.key});
@@ -32,7 +33,16 @@ class SigninBody extends StatelessWidget {
             child: Text("Forget Password?", style: Styles.textStyleSecColor13),
           ),
           SizedBox(height: 30.h),
-          CustomAppButton(text: "Sign In", onPressed: () {}, height: 65),
+          CustomAppButton(
+            text: "Sign In",
+            onPressed: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => HomeView()),
+              );
+            },
+            height: 65,
+          ),
           SizedBox(height: 20.h),
           TextInsideDivider(text: "Or Sign in With"),
           SizedBox(height: 20.h),

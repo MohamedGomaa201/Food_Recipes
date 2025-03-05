@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_recipes/core/themes/app_colors.dart';
+import 'package:food_recipes/core/themes/styles.dart';
 
 class TermsAndConditionCheckbox extends StatelessWidget {
   const TermsAndConditionCheckbox({
@@ -17,7 +18,7 @@ class TermsAndConditionCheckbox extends StatelessWidget {
     return CheckboxListTile(
       title: Text(
         "Accept terms & Condition",
-        style: TextStyle(color: AppColors.secondaryColor, fontSize: 11.sp),
+        style: Styles.textStyleGrey11.copyWith(color: AppColors.secondaryColor),
       ),
       dense: true,
       controlAffinity: ListTileControlAffinity.leading,

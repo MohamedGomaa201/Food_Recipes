@@ -7,6 +7,7 @@ import 'package:food_recipes/features/auth/presentation/view/widgets/non_clickab
 import 'package:food_recipes/features/auth/presentation/view/widgets/row_of_social_auth_buttons.dart';
 import 'package:food_recipes/features/auth/presentation/view/widgets/terms_and_condition_checkbox.dart';
 import 'package:food_recipes/features/auth/presentation/view/widgets/text_inside_divider.dart';
+import 'package:food_recipes/features/home/presentation/view/home_view.dart';
 
 class SignupBody extends StatefulWidget {
   const SignupBody({super.key});
@@ -51,7 +52,16 @@ class _SignupBodyState extends State<SignupBody> {
               },
             ),
             SizedBox(height: 10.h),
-            CustomAppButton(text: "Sign Up", onPressed: () {}, height: 60),
+            CustomAppButton(
+              text: "Sign Up",
+              onPressed: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomeView()),
+                );
+              },
+              height: 60,
+            ),
             SizedBox(height: 14.h),
             TextInsideDivider(text: "Or Sign Up With"),
             SizedBox(height: 20.h),
