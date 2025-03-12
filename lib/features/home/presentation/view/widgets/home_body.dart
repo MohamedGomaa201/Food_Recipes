@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_recipes/core/constants/app_images.dart';
 import 'package:food_recipes/core/themes/app_colors.dart';
 import 'package:food_recipes/core/themes/styles.dart';
+import 'package:food_recipes/features/home/presentation/view/widgets/new_recipe_card.dart';
 import 'package:food_recipes/features/home/presentation/view/widgets/recipe_card.dart';
 import 'package:food_recipes/features/home/presentation/view/widgets/top_navigation_bar_tab.dart';
 
@@ -117,28 +118,12 @@ class _HomeBodyState extends State<HomeBody>
               "New Recipes",
               style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w600),
             ),
-            Card(
-              color: Colors.white,
-              child: SizedBox(
-                width: 251.w,
-                height: 95.h,
-                child: Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 10.w,
-                    vertical: 10.h,
-                  ),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Text(
-                          "Steak with tomato sauce and bulgur rice.",
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                      Image.asset("assets/images/food1.png"),
-                    ],
-                  ),
-                ),
+            SizedBox(
+              width: double.infinity,
+              height: 309.h,
+              child: ListView.builder(
+                itemCount: 4,
+                itemBuilder: (context, index) => NewRecipeCard(),
               ),
             ),
           ],

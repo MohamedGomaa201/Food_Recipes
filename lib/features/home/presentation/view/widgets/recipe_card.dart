@@ -25,7 +25,11 @@ class RecipeCard extends StatelessWidget {
             ),
             Positioned(
               bottom: 75.h,
-              child: Image.asset("assets/images/food1.png"),
+              child: Image.asset(
+                "assets/images/food1.png",
+                width: 155.w,
+                height: 155.h,
+              ),
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 10.w),
