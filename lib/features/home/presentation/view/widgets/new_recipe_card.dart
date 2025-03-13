@@ -28,7 +28,7 @@ class NewRecipeCard extends StatelessWidget {
                   ),
                   child: Row(
                     children: [
-                      SizedBox(width: 110.w),
+                      SizedBox(width: 95.w),
                       Expanded(
                         child: Text(
                           "Steak with tomato sauce and bulgur rice.",
@@ -54,30 +54,6 @@ class NewRecipeCard extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
-            // Positioned(
-            //   left: 250.w,
-            //   child: Padding(
-            //     padding: EdgeInsets.symmetric(
-            //       horizontal: 10.w,
-            //       vertical: 10.h,
-            //     ),
-            //     child: GestureDetector(
-            //       onTap: () {},
-            //       child: Container(
-            //         width: 30.w,
-            //         height: 30.h,
-            //         decoration: BoxDecoration(
-            //           color: Colors.white,
-            //           shape: BoxShape.circle,
-            //         ),
-            //         child: Image.asset(
-            //           "assets/icons/bookmark.png",
-            //           scale: 1,
-            //         ),
-            //       ),
-            //     ),
-            //   ),
-            // ),
           ],
         ),
       ),

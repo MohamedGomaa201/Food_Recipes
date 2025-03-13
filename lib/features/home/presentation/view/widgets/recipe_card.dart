@@ -43,7 +43,7 @@ class RecipeCard extends StatelessWidget {
                       style: TextStyle(fontSize: 14.sp),
                     ),
                   ),
-                  SizedBox(height: 24.h),
+                  Spacer(),
                   GestureDetector(
                     onTap: () {},
                     child: Container(
