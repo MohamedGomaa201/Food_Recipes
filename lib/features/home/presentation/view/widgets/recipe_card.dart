@@ -44,20 +44,33 @@ class RecipeCard extends StatelessWidget {
                     ),
                   ),
                   Spacer(),
-                  GestureDetector(
-                    onTap: () {},
-                    child: Container(
-                      width: 24.w,
-                      height: 24.h,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        shape: BoxShape.circle,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      InkWell(
+                        onTap: () {},
+                        child: Container(
+                          width: 24.w,
+                          height: 24.h,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            shape: BoxShape.circle,
+                          ),
+                          child: Image.asset(
+                            "assets/icons/bookmark.png",
+                            scale: 1.5,
+                          ),
+                        ),
                       ),
-                      child: Image.asset(
-                        "assets/icons/bookmark.png",
-                        scale: 1.5,
+                      // Spacer(),
+                      IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          Icons.arrow_forward_ios_sharp,
+                          color: AppColors.grey3,
+                        ),
                       ),
-                    ),
+                    ],
                   ),
                   SizedBox(height: 10.h),
                 ],
