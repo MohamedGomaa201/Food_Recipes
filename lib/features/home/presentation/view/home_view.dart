@@ -14,11 +14,20 @@ class HomeView extends StatelessWidget {
         showUnselectedLabels: false,
         items: [
           BottomNavigationBarItem(
-            icon: Image.asset("assets/icons/home.png"),
+            icon: Image.asset("assets/icons/nav_bar/inactive_home.png"),
             label: "Home",
+            activeIcon: Image.asset("assets/icons/nav_bar/active_home.png"),
           ),
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+          BottomNavigationBarItem(
+            icon: Image.asset("assets/icons/nav_bar/inactive_bookmark.png"),
+            label: "Saved",
+            activeIcon: Image.asset("assets/icons/nav_bar/active_bookmark.png"),
+          ),
+          BottomNavigationBarItem(
+            icon: Image.asset("assets/icons/nav_bar/inactive_profile.png"),
+            label: "Profile",
+            activeIcon: Image.asset("assets/icons/nav_bar/active_profile.png"),
+          ),
         ],
       ),
     );
