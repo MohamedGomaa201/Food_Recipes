@@ -19,14 +19,12 @@ class _HomeBodyState extends State<HomeBody>
   late TabController _tabController;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _tabController = TabController(length: 5, vsync: this);
   }
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     _tabController.dispose();
   }
