@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:food_recipes/core/constants/app_images.dart';
 import 'package:food_recipes/core/themes/app_colors.dart';
+import 'package:food_recipes/features/recipe/presentation/view/recipe_view.dart';
 
 class RecipeCard extends StatelessWidget {
   const RecipeCard({super.key});
@@ -57,14 +59,21 @@ class RecipeCard extends StatelessWidget {
                             shape: BoxShape.circle,
                           ),
                           child: Image.asset(
-                            "assets/icons/bookmark.png",
+                            AppImages.addToFavorite,
                             scale: 1.5,
                           ),
                         ),
                       ),
                       // Spacer(),
                       IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => RecipeView(),
+                            ),
+                          );
+                        },
                         icon: Icon(
                           Icons.arrow_forward_ios_sharp,
                           color: AppColors.grey3,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_recipes/core/constants/app_images.dart';
 import 'package:food_recipes/features/home/presentation/view/widgets/home_body.dart';
 
 class HomeView extends StatelessWidget {
@@ -14,19 +15,19 @@ class HomeView extends StatelessWidget {
         showUnselectedLabels: false,
         items: [
           BottomNavigationBarItem(
-            icon: Image.asset("assets/icons/nav_bar/inactive_home.png"),
+            icon: Image.asset(AppImages.navInActHome),
             label: "Home",
-            activeIcon: Image.asset("assets/icons/nav_bar/active_home.png"),
+            activeIcon: Image.asset(AppImages.navActHome),
           ),
           BottomNavigationBarItem(
-            icon: Image.asset("assets/icons/nav_bar/inactive_bookmark.png"),
+            icon: Image.asset(AppImages.navInActBookmark),
             label: "Saved",
-            activeIcon: Image.asset("assets/icons/nav_bar/active_bookmark.png"),
+            activeIcon: Image.asset(AppImages.navActBookmark),
           ),
           BottomNavigationBarItem(
-            icon: Image.asset("assets/icons/nav_bar/inactive_profile.png"),
+            icon: Image.asset(AppImages.navInActProfile),
             label: "Profile",
-            activeIcon: Image.asset("assets/icons/nav_bar/active_profile.png"),
+            activeIcon: Image.asset(AppImages.navActProfile),
           ),
         ],
       ),

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:food_recipes/core/shared%20widgets/top_navigation_bar_tab.dart';
 import 'package:food_recipes/core/themes/app_colors.dart';
 import 'package:food_recipes/core/themes/styles.dart';
-import 'package:food_recipes/features/home/presentation/view/widgets/home_tab_bar.dart';
+import 'package:food_recipes/core/shared%20widgets/custom_tab_bar.dart';
 import 'package:food_recipes/features/home/presentation/view/widgets/new_recipe_card_builder.dart';
 import 'package:food_recipes/features/home/presentation/view/widgets/recipe_card_builder.dart';
 import 'package:food_recipes/features/home/presentation/view/widgets/search_box.dart';
@@ -16,17 +17,23 @@ class HomeBody extends StatefulWidget {
 
 class _HomeBodyState extends State<HomeBody>
     with SingleTickerProviderStateMixin {
-  late TabController _tabController;
+  late TabController tabController;
+  int selectedIndex = 0;
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 5, vsync: this);
+    tabController = TabController(length: 5, vsync: this);
+    tabController.addListener(() {
+      setState(() {
+        selectedIndex = tabController.index;
+      });
+    });
   }
 
   @override
   void dispose() {
     super.dispose();
-    _tabController.dispose();
+    tabController.dispose();
   }
 
   @override
@@ -48,7 +55,36 @@ class _HomeBodyState extends State<HomeBody>
           SizedBox(height: 30.h),
           SearchBox(),
           SizedBox(height: 15.h),
-          HomeTabBar(tabController: _tabController),
+          CustomTabBar(
+            tabController: tabController,
+            tabs: [
+              TopNavigationBarTap(
+                selectedIndex: selectedIndex,
+                cIndex: 0,
+                name: "All",
+              ),
+              TopNavigationBarTap(
+                selectedIndex: selectedIndex,
+                cIndex: 1,
+                name: "Egyptian",
+              ),
+              TopNavigationBarTap(
+                selectedIndex: selectedIndex,
+                cIndex: 2,
+                name: "American",
+              ),
+              TopNavigationBarTap(
+                selectedIndex: selectedIndex,
+                cIndex: 3,
+                name: "Italian",
+              ),
+              TopNavigationBarTap(
+                selectedIndex: selectedIndex,
+                cIndex: 4,
+                name: "Turkish",
+              ),
+            ],
+          ),
           RecipeCardBuilder(),
           SizedBox(height: 20.h),
           Text(

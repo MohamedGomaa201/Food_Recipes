@@ -19,6 +19,7 @@ class MainApp extends StatelessWidget {
         theme: ThemeData(
           fontFamily: "Poppins",
           scaffoldBackgroundColor: Colors.white,
+          appBarTheme: AppBarTheme(color: Colors.white),
           primaryColor: AppColors.mainColor,
         ),
         home: SplashView(),
