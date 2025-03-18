@@ -4,7 +4,11 @@ import 'package:food_recipes/core/themes/app_colors.dart';
 import 'package:food_recipes/core/themes/styles.dart';
 
 class IngredientRow extends StatelessWidget {
-  const IngredientRow({super.key, required this.ingredient, required this.quantity});
+  const IngredientRow({
+    super.key,
+    required this.ingredient,
+    required this.quantity,
+  });
   final String ingredient;
   final String quantity;
 
@@ -25,10 +29,7 @@ class IngredientRow extends StatelessWidget {
           SizedBox(width: 8.w),
           Text(
             ingredient,
-            style: Styles.textStyle18.copyWith(
-              color: Colors.black,
-              fontWeight: FontWeight.bold,
-            ),
+            style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),
           ),
           Spacer(),
           Text(

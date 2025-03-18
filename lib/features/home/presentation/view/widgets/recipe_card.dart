@@ -49,22 +49,24 @@ class RecipeCard extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      InkWell(
-                        onTap: () {},
-                        child: Container(
-                          width: 24.w,
-                          height: 24.h,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            shape: BoxShape.circle,
-                          ),
-                          child: Image.asset(
-                            AppImages.addToFavorite,
-                            scale: 1.5,
+                      Padding(
+                        padding: EdgeInsets.only(left: 5.w),
+                        child: InkWell(
+                          onTap: () {},
+                          child: Container(
+                            width: 24.w,
+                            height: 24.h,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              shape: BoxShape.circle,
+                            ),
+                            child: Image.asset(
+                              AppImages.addToFavorite,
+                              scale: 1.5,
+                            ),
                           ),
                         ),
                       ),
-                      // Spacer(),
                       IconButton(
                         onPressed: () {
                           Navigator.push(
@@ -81,7 +83,7 @@ class RecipeCard extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 10.h),
+                  // SizedBox(height: 7.h),
                 ],
               ),
             ),

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:food_recipes/core/constants/app_images.dart';
-import 'package:food_recipes/core/themes/app_colors.dart';
-import 'package:food_recipes/features/recipe/presentation/view/widgets/ingredient_row.dart';
+import 'package:food_recipes/features/recipe/presentation/view/widgets/attributes_row.dart';
+import 'package:food_recipes/features/recipe/presentation/view/widgets/ingredients.dart';
+import 'package:food_recipes/features/recipe/presentation/view/widgets/instructions.dart';
+import 'package:food_recipes/features/recipe/presentation/view/widgets/recipe_image.dart';
+import 'package:food_recipes/features/recipe/presentation/view/widgets/recipe_name.dart';
 import 'package:food_recipes/features/recipe/presentation/view/widgets/recipe_tab_bar.dart';
 
 class RecipeBody extends StatefulWidget {
@@ -39,74 +41,16 @@ class _RecipeBodyState extends State<RecipeBody>
       padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 8.h),
       child: Column(
         children: [
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12.r),
-              image: DecorationImage(
-                image: AssetImage("assets/images/food2.jpg"),
-                fit: BoxFit.cover,
-              ),
-            ),
-            width: double.infinity,
-            height: 200.h,
-          ),
+          RecipeImage(),
           SizedBox(height: 10.h),
-          Text(
-            "Spicy chicken burger with French fires",
-            style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),
-            textAlign: TextAlign.start,
-          ),
+          RecipeName(),
           SizedBox(height: 10.h),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  color: AppColors.grey4,
-                  borderRadius: BorderRadius.circular(12.r),
-                ),
-                padding: EdgeInsets.all(8),
-                child: Image.asset(
-                  AppImages.italyFlag,
-                  width: 25.w,
-                  height: 20.h,
-                  fit: BoxFit.contain,
-                ),
-              ),
-              Container(
-                decoration: BoxDecoration(
-                  color: AppColors.grey4,
-                  borderRadius: BorderRadius.circular(12.r),
-                ),
-                padding: EdgeInsets.all(8),
-                child: Text("Vegetarian"),
-              ),
-              Container(
-                decoration: BoxDecoration(
-                  color: AppColors.grey4,
-                  borderRadius: BorderRadius.circular(12.r),
-                ),
-                padding: EdgeInsets.all(8),
-                child: Text("Meat,Casserole"),
-              ),
-            ],
-          ),
+          AttributesRow(),
           RecipeTabBar(
             tabController: tabController,
             selectedIndex: selectedIndex,
           ),
-          SizedBox(
-            height: 300.h,
-            width: double.infinity,
-            child: ListView(
-              children: [
-                IngredientRow(ingredient: "Tomatoes", quantity: "500g"),
-                IngredientRow(ingredient: "Cabbage", quantity: "300g"),
-                IngredientRow(ingredient: "Taco", quantity: "300g"),
-                IngredientRow(ingredient: "Slice Bread", quantity: "300g"),
-              ],
-            ),
-          ),
+          selectedIndex == 0 ? Ingredients() : Instructions(),
         ],
       ),
     );

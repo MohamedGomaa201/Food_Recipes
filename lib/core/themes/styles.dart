@@ -22,4 +22,9 @@ abstract class Styles {
     color: Colors.white,
     fontSize: 18.sp,
   );
+
+  static TextStyle tagAndCategoryStyle = TextStyle(
+    fontSize: 12.sp,
+    fontWeight: FontWeight.bold,
+  );
 }

@@ -23,7 +23,7 @@ class RecipeTabBar extends StatelessWidget {
           TopNavigationBarTap(
             selectedIndex: selectedIndex,
             cIndex: 0,
-            name: "Ingredient",
+            name: "Ingredients",
           ),
           TopNavigationBarTap(
             selectedIndex: selectedIndex,
