@@ -18,19 +18,16 @@ class TopNavigationBarTap extends StatelessWidget {
   Widget build(BuildContext context) {
     return Tab(
       child: Container(
-        height: 31.h,
         decoration: BoxDecoration(
           color: _selectedIndex == cIndex ? AppColors.mainColor : Colors.white,
           borderRadius: BorderRadius.circular(12),
         ),
-        padding: const EdgeInsets.symmetric(horizontal: 12),
-        child: Center(
-          child: Text(
-            name,
-            style: TextStyle(
-              color:
-                  _selectedIndex == cIndex ? Colors.white : AppColors.mainColor,
-            ),
+        padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 8.h),
+        child: Text(
+          name,
+          style: TextStyle(
+            color:
+                _selectedIndex == cIndex ? Colors.white : AppColors.mainColor,
           ),
         ),
       ),
