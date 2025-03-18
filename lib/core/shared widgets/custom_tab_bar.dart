@@ -17,8 +17,6 @@ class CustomTabBar extends StatefulWidget {
 }
 
 class _CustomTabBarState extends State<CustomTabBar> {
-  
-
   @override
   Widget build(BuildContext context) {
     return TabBar(
@@ -26,7 +24,7 @@ class _CustomTabBarState extends State<CustomTabBar> {
       dividerHeight: 0,
       overlayColor: WidgetStateColor.transparent,
       controller: widget.tabController,
-      unselectedLabelColor: Colors.grey,
+      labelPadding: EdgeInsets.zero,
       indicatorSize: TabBarIndicatorSize.tab,
       isScrollable: true,
       physics: const BouncingScrollPhysics(),

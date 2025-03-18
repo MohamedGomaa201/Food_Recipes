@@ -24,7 +24,10 @@ class SplashBody extends StatelessWidget {
           SizedBox(height: 100.h),
           Image.asset(AppImages.splashLogo),
           SizedBox(height: 15.h),
-          Text("100K+ Premium Recipe ", style: Styles.textStyle18),
+          Text(
+            "100K+ Premium Recipe ",
+            style: Styles.textStyle18.copyWith(fontWeight: FontWeight.w600),
+          ),
           SizedBox(height: 225.h),
           Text(
             "Get\nCooking",

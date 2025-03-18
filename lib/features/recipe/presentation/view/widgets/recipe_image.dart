@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:food_recipes/core/constants/app_images.dart';
+import 'package:food_recipes/core/shared%20widgets/add_to_favorite_button.dart';
 
 class RecipeImage extends StatelessWidget {
   const RecipeImage({super.key});
@@ -28,21 +28,7 @@ class RecipeImage extends StatelessWidget {
           width: double.infinity,
           height: 200.h,
         ),
-        Positioned(
-          bottom: 10.h,
-          right: 7.w,
-          child: IconButton(
-            onPressed: () {},
-            icon: Container(
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.white,
-              ),
-              padding: EdgeInsets.all(8),
-              child: Image.asset(AppImages.addToFavorite, scale: 1.3),
-            ),
-          ),
-        ),
+        Positioned(bottom: 10.h, right: 7.w, child: AddToFavoriteButton()),
       ],
     );
   }

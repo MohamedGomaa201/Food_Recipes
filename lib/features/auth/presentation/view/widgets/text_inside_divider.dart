@@ -17,7 +17,10 @@ class TextInsideDivider extends StatelessWidget {
           Expanded(child: Divider(color: AppColors.grey4, thickness: .5.h)),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 8.w),
-            child: Text(text, style: Styles.textStyleGrey12.copyWith(color: AppColors.grey4)),
+            child: Text(
+              text,
+              style: Styles.textStyleGrey12.copyWith(color: AppColors.grey4),
+            ),
           ),
           Expanded(child: Divider(color: AppColors.grey4, thickness: .5.h)),
         ],
