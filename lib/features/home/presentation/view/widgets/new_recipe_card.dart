@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:food_recipes/features/recipe/data/models/recipe_model.dart';
 import 'package:food_recipes/features/recipe/presentation/view/recipe_view.dart';
 
 class NewRecipeCard extends StatelessWidget {
-  const NewRecipeCard({super.key});
+  const NewRecipeCard({super.key, required this.recipe});
+  final RecipeModel recipe;
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +13,7 @@ class NewRecipeCard extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => RecipeView()),
+          MaterialPageRoute(builder: (context) => RecipeView(recipe: recipe,)),
         );
       },
       child: Padding(
@@ -39,7 +41,7 @@ class NewRecipeCard extends StatelessWidget {
                         SizedBox(width: 95.w),
                         Expanded(
                           child: Text(
-                            "Steak with tomato sauce and bulgur rice.",
+                            recipe.name,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
                               fontSize: 14.sp,
@@ -55,8 +57,8 @@ class NewRecipeCard extends StatelessWidget {
               ),
               Positioned(
                 bottom: 15.h,
-                child: Image.asset(
-                  "assets/images/food1.png",
+                child: Image.network(
+                  recipe.imageUrl,
                   width: 110.w,
                   height: 110.h,
                   fit: BoxFit.cover,
