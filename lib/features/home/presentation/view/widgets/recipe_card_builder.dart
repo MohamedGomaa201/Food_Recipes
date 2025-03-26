@@ -10,7 +10,7 @@ class RecipeCardBuilder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 231.h,
+      height: 250.h,
       child:
           recipes.isEmpty
               ? Center(child: Text("No recipes found"))

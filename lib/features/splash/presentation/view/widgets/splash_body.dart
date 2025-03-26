@@ -49,7 +49,7 @@ class SplashBody extends StatelessWidget {
             child: CustomAppButton(
               text: "Start Cooking",
               onPressed: () {
-                Navigator.push(
+                Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(builder: (context) => SigninView()),
                 );

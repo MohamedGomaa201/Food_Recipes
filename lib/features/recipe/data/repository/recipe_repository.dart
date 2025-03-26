@@ -36,10 +36,13 @@ class RecipeRepository {
               id: meal["idMeal"],
               name: meal["strMeal"],
               imageUrl: meal["strMealThumb"],
+              videoUrl: meal["strYoutube"],
               category: "",
               area: area,
               instructions: "",
               ingredients: [],
+              measure: [],
+              tags: "",
             ),
           )
           .toList();

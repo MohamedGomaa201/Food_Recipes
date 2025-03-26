@@ -32,9 +32,17 @@ class IngredientRow extends StatelessWidget {
             style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),
           ),
           Spacer(),
-          Text(
-            quantity,
-            style: Styles.textStyleSecColor13.copyWith(color: AppColors.grey3),
+          Expanded(
+            child: Text(
+              quantity,
+              style: Styles.textStyleSecColor13.copyWith(
+                color: AppColors.grey3,
+              ),
+              overflow: TextOverflow.ellipsis,
+              softWrap: true,
+              maxLines: 3,
+              textAlign: TextAlign.end,
+            ),
           ),
         ],
       ),

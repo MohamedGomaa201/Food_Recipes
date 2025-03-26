@@ -10,7 +10,9 @@ class RecipeName extends StatelessWidget {
     return Text(
       name,
       style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),
-      textAlign: TextAlign.start,
+      textAlign: TextAlign.center,
+      maxLines: 1,
+      overflow: TextOverflow.ellipsis,
     );
   }
 }

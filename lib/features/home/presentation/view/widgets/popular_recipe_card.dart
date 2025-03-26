@@ -1,20 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:food_recipes/core/services/api_service.dart';
+import 'package:food_recipes/core/themes/app_colors.dart';
 import 'package:food_recipes/features/recipe/data/models/recipe_model.dart';
+import 'package:food_recipes/features/recipe/data/repository/recipe_repository.dart';
 import 'package:food_recipes/features/recipe/presentation/view/recipe_view.dart';
 
-class NewRecipeCard extends StatelessWidget {
-  const NewRecipeCard({super.key, required this.recipe});
+class PopularRecipeCard extends StatelessWidget {
+  const PopularRecipeCard({super.key, required this.recipe});
   final RecipeModel recipe;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => RecipeView(recipe: recipe,)),
-        );
+      onTap: () async {
+        final fullRecipe = await RecipeRepository(
+          apiService: ApiService(),
+        ).getRecipeById(recipe.id);
+
+        if (fullRecipe != null) {
+          Navigator.push(
+            // ignore: use_build_context_synchronously
+            context,
+            MaterialPageRoute(
+              builder: (context) => RecipeView(recipe: fullRecipe),
+            ),
+          );
+        } else {
+          CircularProgressIndicator(color: AppColors.mainColor);
+        }
       },
       child: Padding(
         padding: EdgeInsets.only(top: 40.h, bottom: 25.h),
@@ -38,7 +52,7 @@ class NewRecipeCard extends StatelessWidget {
                     ),
                     child: Row(
                       children: [
-                        SizedBox(width: 95.w),
+                        SizedBox(width: 105.w),
                         Expanded(
                           child: Text(
                             recipe.name,
@@ -56,12 +70,11 @@ class NewRecipeCard extends StatelessWidget {
                 ),
               ),
               Positioned(
-                bottom: 15.h,
-                child: Image.network(
-                  recipe.imageUrl,
-                  width: 110.w,
-                  height: 110.h,
-                  fit: BoxFit.cover,
+                bottom: 25.h,
+                left: 10.w,
+                child: CircleAvatar(
+                  radius: 53.r,
+                  backgroundImage: NetworkImage("${recipe.imageUrl}/small"),
                 ),
               ),
             ],

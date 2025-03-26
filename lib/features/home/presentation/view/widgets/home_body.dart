@@ -3,11 +3,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_recipes/core/services/recipe_service.dart';
 import 'package:food_recipes/core/shared%20widgets/top_navigation_bar_tab.dart';
 import 'package:food_recipes/core/themes/app_colors.dart';
-import 'package:food_recipes/core/themes/styles.dart';
 import 'package:food_recipes/core/shared%20widgets/custom_tab_bar.dart';
-import 'package:food_recipes/features/home/presentation/view/widgets/new_recipe_card_builder.dart';
+import 'package:food_recipes/features/home/presentation/view/widgets/home_header.dart';
+import 'package:food_recipes/features/home/presentation/view/widgets/popular_recipe_card_builder.dart';
 import 'package:food_recipes/features/home/presentation/view/widgets/recipe_card_builder.dart';
-import 'package:food_recipes/features/home/presentation/view/widgets/search_box.dart';
 import 'package:food_recipes/features/recipe/data/models/recipe_model.dart';
 
 class HomeBody extends StatefulWidget {
@@ -21,46 +20,109 @@ class _HomeBodyState extends State<HomeBody>
     with SingleTickerProviderStateMixin {
   late TabController tabController;
   int selectedIndex = 0;
-  final RecipeService _recipeService = RecipeService();
+  final RecipeService recipeService = RecipeService();
+  Map<String, List<RecipeModel>> cachedRecipes = {};
   List<RecipeModel> _recipes = [];
-  bool _isLoading = true;
-  @override
-  void initState() {
-    super.initState();
-    tabController = TabController(length: 5, vsync: this);
-    tabController.addListener(() {
-      setState(() {
-        selectedIndex = tabController.index;
-      });
-    });
-    _fetchRecipes();
-  }
+  List<RecipeModel> _cachedPopularRecipes = [];
+  bool isLoading = true;
+  bool isPopularRecipesLoaded = false;
 
-  Future<void> _fetchRecipes() async {
-    setState(() {
-      _isLoading = true;
-    });
-
-    try {
-      final recipes = await _recipeService.filterByArea(
-        "Egyptian",
-      ); // Example category
-      setState(() {
-        _recipes = recipes;
-        _isLoading = false;
-      });
-    } catch (e) {
-      print("Error fetching recipes: $e");
-      setState(() {
-        _isLoading = false;
-      });
+  String getSelectedArea() {
+    switch (selectedIndex) {
+      case 1:
+        return "Egyptian";
+      case 2:
+        return "American";
+      case 3:
+        return "Italian";
+      case 4:
+        return "Turkish";
+      case 5:
+        return "Chinese";
+      default:
+        return "All";
     }
   }
 
   @override
+  void initState() {
+    super.initState();
+    tabController = TabController(length: 6, vsync: this);
+    tabController.addListener(() {
+      setState(() {
+        selectedIndex = tabController.index;
+      });
+      fetchRecipes(getSelectedArea());
+    });
+
+    fetchRecipes(getSelectedArea());
+    fetchPopularRecipes();
+  }
+
+  Future<void> fetchRecipes(String area) async {
+    if (cachedRecipes.containsKey(area)) {
+      setState(() {
+        _recipes = cachedRecipes[area]!;
+        isLoading = false;
+      });
+      return;
+    }
+
+    setState(() {
+      isLoading = true;
+    });
+
+    try {
+      List<RecipeModel> mainRecipes = [];
+
+      if (area == "All") {
+        for (int i = 0; i < 5; i++) {
+          final randomRecipe = await recipeService.getRandomRecipe();
+          if (randomRecipe != null) {
+            mainRecipes.add(randomRecipe);
+          }
+        }
+      } else {
+        mainRecipes = await recipeService.filterByArea(area);
+      }
+
+      setState(() {
+        cachedRecipes[area] = mainRecipes;
+        _recipes = mainRecipes;
+        isLoading = false;
+      });
+    } catch (e) {
+      setState(() {
+        isLoading = false;
+      });
+      Text("Error fetching recipes: $e");
+    }
+  }
+
+  Future<void> fetchPopularRecipes() async {
+    if (isPopularRecipesLoaded) return;
+
+    Set<String> usedRecipeIds = _recipes.map((recipe) => recipe.id).toSet();
+    List<RecipeModel> popularRecipes = [];
+
+    while (popularRecipes.length < 5) {
+      final randomRecipe = await recipeService.getRandomRecipe();
+      if (randomRecipe != null && !usedRecipeIds.contains(randomRecipe.id)) {
+        popularRecipes.add(randomRecipe);
+        usedRecipeIds.add(randomRecipe.id);
+      }
+    }
+
+    setState(() {
+      _cachedPopularRecipes = popularRecipes;
+      isPopularRecipesLoaded = true;
+    });
+  }
+
+  @override
   void dispose() {
-    super.dispose();
     tabController.dispose();
+    super.dispose();
   }
 
   @override
@@ -70,20 +132,15 @@ class _HomeBodyState extends State<HomeBody>
         padding: EdgeInsets.only(left: 30.w, right: 30.w, top: 20.h),
         physics: NeverScrollableScrollPhysics(),
         children: [
-          Text(
-            "Hello Mohamed",
-            style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w600),
-          ),
-          SizedBox(height: 5.h),
-          Text(
-            "What are you cooking today?",
-            style: Styles.textStyleGrey11.copyWith(color: AppColors.grey3),
-          ),
-          SizedBox(height: 30.h),
-          SearchBox(),
-          SizedBox(height: 15.h),
+          HomeHeader(),
           CustomTabBar(
             tabController: tabController,
+            onTap: (index) {
+              setState(() {
+                selectedIndex = index;
+              });
+              fetchRecipes(getSelectedArea());
+            },
             tabs: [
               TopNavigationBarTap(
                 selectedIndex: selectedIndex,
@@ -110,17 +167,24 @@ class _HomeBodyState extends State<HomeBody>
                 cIndex: 4,
                 name: "Turkish",
               ),
+              TopNavigationBarTap(
+                selectedIndex: selectedIndex,
+                cIndex: 5,
+                name: "Chinese",
+              ),
             ],
           ),
-          _isLoading
-              ? CircularProgressIndicator()
+          isLoading
+              ? Center(
+                child: CircularProgressIndicator(color: AppColors.mainColor),
+              )
               : RecipeCardBuilder(recipes: _recipes),
           SizedBox(height: 20.h),
           Text(
-            "New Recipes",
+            "Popular Recipes",
             style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w700),
           ),
-          NewRecipeCardBuilder(recipes: _recipes),
+          PopularRecipeCardBuilder(recipes: _cachedPopularRecipes),
         ],
       ),
     );
