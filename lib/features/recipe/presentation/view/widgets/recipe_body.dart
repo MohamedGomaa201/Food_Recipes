@@ -46,11 +46,20 @@ class _RecipeBodyState extends State<RecipeBody>
       );
       youtubePlayer = YoutubePlayer(
         controller: youtubePlayerController,
-        progressColors: ProgressBarColors(
-          bufferedColor: Colors.white,
-          handleColor: AppColors.mainColor,
-          playedColor: AppColors.mainColor,
-        ),
+        bottomActions: [
+          CurrentPosition(),
+          SizedBox(width: 8.w),
+          ProgressBar(
+            isExpanded: true,
+            colors: ProgressBarColors(
+              bufferedColor: Colors.white,
+              handleColor: AppColors.mainColor,
+              playedColor: AppColors.mainColor,
+            ),
+          ),
+          SizedBox(width: 8.w),
+          RemainingDuration(),
+        ],
       );
     }
 
