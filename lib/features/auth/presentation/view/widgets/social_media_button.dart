@@ -13,7 +13,7 @@ class SocialMediaButton extends StatelessWidget {
       borderRadius: BorderRadius.circular(10.w),
       child: InkWell(
         borderRadius: BorderRadius.circular(6.w),
-        onTap: () {},
+        onTap: onTap,
         child: Container(
           width: 44.w,
           height: 44.h,
