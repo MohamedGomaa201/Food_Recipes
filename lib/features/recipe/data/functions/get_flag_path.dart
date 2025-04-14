@@ -28,6 +28,7 @@ String getFlagImagePath(String area) {
     "tunisian": "tunisian",
     "turkish": "turkish",
     "ukrainian": "ukrainian",
+    "uruguayan":"uruguayan"
   };
 
   String fileName = specialCases[formattedArea] ?? formattedArea;
