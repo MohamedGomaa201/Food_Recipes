@@ -2,10 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:food_recipes/core/constants/app_images.dart';
 
 BottomNavigationBar buildBottomNavigationBar() {
+  int currentIndex = 0;
   return BottomNavigationBar(
     backgroundColor: Colors.white,
     showSelectedLabels: false,
     showUnselectedLabels: false,
+    currentIndex: currentIndex,
+    onTap: (index) {
+      currentIndex = index;
+    },
     items: [
       BottomNavigationBarItem(
         icon: Image.asset(AppImages.navInActHome),
@@ -23,5 +28,6 @@ BottomNavigationBar buildBottomNavigationBar() {
         activeIcon: Image.asset(AppImages.navActProfile),
       ),
     ],
+
   );
 }

@@ -4,36 +4,19 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_recipes/core/themes/app_colors.dart';
 import 'package:food_recipes/core/themes/styles.dart';
 import 'package:food_recipes/features/home/presentation/view/widgets/search_box.dart';
-import 'package:food_recipes/features/splash/presentation/view/splash_view.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 
 class HomeHeader extends StatelessWidget {
-  const HomeHeader({super.key});
+  const HomeHeader({super.key, this.user});
+  final User? user;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              "Hello Mohamed",
-              style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w600),
-            ),
-            IconButton(
-              onPressed: () async {
-                await GoogleSignIn().signOut();
-                await FirebaseAuth.instance.signOut();
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => const SplashView()),
-                );
-              },
-              icon: const Icon(Icons.logout_outlined),
-            ),
-          ],
+        Text(
+          "Hello ${user?.displayName ?? "Jamie Oliver"}",
+          style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w600),
         ),
         SizedBox(height: 5.h),
         Text(

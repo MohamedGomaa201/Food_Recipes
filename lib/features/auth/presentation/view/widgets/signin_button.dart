@@ -33,7 +33,7 @@ class SigninButton extends StatelessWidget {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) => HomeView(userCredential: user),
+              builder: (context) => HomeView(user: user.user!),
             ),
           );
         } on FirebaseAuthException catch (e) {

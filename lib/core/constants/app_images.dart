@@ -5,6 +5,7 @@ class AppImages {
   static const googleIcon = "assets/icons/google_icon.png";
   static const searchIcon = "assets/icons/search_icon.png";
   static const addToFavorite = "assets/icons/bookmark.png";
+  static const profileScreenIcon = "assets/images/profile_screen_icon.png";
 
   static const navActBookmark = "assets/icons/nav_bar/active_bookmark.png";
   static const navActHome = "assets/icons/nav_bar/active_home.png";
