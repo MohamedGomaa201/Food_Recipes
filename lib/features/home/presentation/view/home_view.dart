@@ -20,13 +20,17 @@ class _HomeViewState extends State<HomeView> {
   @override
   void initState() {
     super.initState();
-    pages = [HomeBody(user: widget.user), SavedBody(), ProfileBody(user: widget.user)];
+    pages = [
+      HomeBody(user: widget.user),
+      SavedBody(),
+      ProfileBody(user: widget.user),
+    ];
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: pages[currentIndex],
+      body: IndexedStack(index: currentIndex, children: pages),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.white,
         showSelectedLabels: false,
