@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:food_recipes/core/constants/app_images.dart';
-// import 'package:food_recipes/features/home/presentation/view/widgets/bottom_nav_bar.dart';
 import 'package:food_recipes/features/home/presentation/view/widgets/home_body.dart';
 import 'package:food_recipes/features/profile/presentation/view/widgets/profile_body.dart';
 import 'package:food_recipes/features/saved/presentation/view/widgets/saved_body.dart';
