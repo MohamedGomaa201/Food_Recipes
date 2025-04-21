@@ -37,7 +37,7 @@ class RowOfSocialAuthButtons extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder:
-                        (context) => HomeView(userCredential: userCredential),
+                        (context) => HomeView(user: userCredential.user!),
                   ),
                 );
               }

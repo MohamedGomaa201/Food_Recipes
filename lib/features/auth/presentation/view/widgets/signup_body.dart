@@ -97,6 +97,7 @@ class _SignupBodyState extends State<SignupBody> {
                   emailController: emailController,
                   passwordController: passwordController,
                   formKey: formKey,
+                  nameController: nameController,
                 ),
                 SizedBox(height: 14.h),
                 TextInsideDivider(text: "Or Sign Up With"),

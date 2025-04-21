@@ -9,10 +9,12 @@ class SignupButton extends StatelessWidget {
     required this.emailController,
     required this.passwordController,
     required this.formKey,
+    required this.nameController,
   });
   final GlobalKey<FormState> formKey;
   final TextEditingController emailController;
   final TextEditingController passwordController;
+  final TextEditingController nameController;
 
   @override
   Widget build(BuildContext context) {
@@ -28,10 +30,13 @@ class SignupButton extends StatelessWidget {
                 email: emailController.text,
                 password: passwordController.text,
               );
+          await user.user?.updateDisplayName(nameController.text);
+          await user.user?.reload();
+          final updatedUser = FirebaseAuth.instance.currentUser!;
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) => HomeView(userCredential: user),
+              builder: (context) => HomeView(user: updatedUser),
             ),
           );
         } on FirebaseAuthException catch (e) {

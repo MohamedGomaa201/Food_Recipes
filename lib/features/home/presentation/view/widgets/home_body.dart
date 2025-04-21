@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_recipes/core/services/recipe_service.dart';
@@ -10,7 +11,8 @@ import 'package:food_recipes/features/home/presentation/view/widgets/recipe_card
 import 'package:food_recipes/features/recipe/data/models/recipe_model.dart';
 
 class HomeBody extends StatefulWidget {
-  const HomeBody({super.key});
+  const HomeBody({super.key, this.user});
+  final User? user;
 
   @override
   State<HomeBody> createState() => _HomeBodyState();
@@ -132,7 +134,7 @@ class _HomeBodyState extends State<HomeBody>
         padding: EdgeInsets.only(left: 30.w, right: 30.w, top: 20.h),
         physics: NeverScrollableScrollPhysics(),
         children: [
-          HomeHeader(),
+          HomeHeader(user: widget.user),
           CustomTabBar(
             tabController: tabController,
             onTap: (index) {
