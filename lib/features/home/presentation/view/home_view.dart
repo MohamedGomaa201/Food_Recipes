@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:food_recipes/core/constants/app_images.dart';
-// import 'package:food_recipes/features/home/presentation/view/widgets/bottom_nav_bar.dart';
 import 'package:food_recipes/features/home/presentation/view/widgets/home_body.dart';
 import 'package:food_recipes/features/profile/presentation/view/widgets/profile_body.dart';
 import 'package:food_recipes/features/saved/presentation/view/widgets/saved_body.dart';
@@ -20,13 +19,17 @@ class _HomeViewState extends State<HomeView> {
   @override
   void initState() {
     super.initState();
-    pages = [HomeBody(user: widget.user), SavedBody(), ProfileBody(user: widget.user)];
+    pages = [
+      HomeBody(user: widget.user),
+      SavedBody(),
+      ProfileBody(user: widget.user),
+    ];
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: pages[currentIndex],
+      body: IndexedStack(index: currentIndex, children: pages),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.white,
         showSelectedLabels: false,
