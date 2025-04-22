@@ -5,14 +5,14 @@ import 'package:food_recipes/core/themes/app_colors.dart';
 import 'package:food_recipes/core/themes/styles.dart';
 
 class SearchBox extends StatelessWidget {
-  const SearchBox({
-    super.key,
-  });
-
+  const SearchBox({super.key, this.onSubmitted});
+  final ValueChanged<String>? onSubmitted;
   @override
   Widget build(BuildContext context) {
     return TextField(
       cursorColor: AppColors.mainColor,
+      textInputAction: TextInputAction.search,
+      onSubmitted: onSubmitted,
       decoration: InputDecoration(
         prefixIcon: Image.asset(AppImages.searchIcon),
         enabledBorder: OutlineInputBorder(

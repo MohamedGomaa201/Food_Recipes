@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_recipes/core/themes/app_colors.dart';
 import 'package:food_recipes/core/themes/styles.dart';
 import 'package:food_recipes/features/home/presentation/view/widgets/search_box.dart';
+import 'package:food_recipes/features/home/presentation/view/widgets/search_view.dart';
 
 class HomeHeader extends StatelessWidget {
   const HomeHeader({super.key, this.user});
@@ -24,7 +25,17 @@ class HomeHeader extends StatelessWidget {
           style: Styles.textStyleGrey11.copyWith(color: AppColors.grey3),
         ),
         SizedBox(height: 30.h),
-        const SearchBox(),
+        SearchBox(
+          onSubmitted: (query) {
+            if (query.trim().isEmpty) return;
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => SearchView(query: query.trim()),
+              ),
+            );
+          },
+        ),
         SizedBox(height: 15.h),
       ],
     );
