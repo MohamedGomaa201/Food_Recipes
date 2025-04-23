@@ -5,11 +5,14 @@ import 'package:food_recipes/core/themes/app_colors.dart';
 import 'package:food_recipes/core/themes/styles.dart';
 
 class SearchBox extends StatelessWidget {
-  const SearchBox({super.key, this.onSubmitted});
+  const SearchBox({super.key, this.onSubmitted, this.onTap});
   final ValueChanged<String>? onSubmitted;
+  final VoidCallback? onTap;
   @override
   Widget build(BuildContext context) {
     return TextField(
+      readOnly: onTap != null,
+      onTap: onTap,
       cursorColor: AppColors.mainColor,
       textInputAction: TextInputAction.search,
       onSubmitted: onSubmitted,
@@ -27,7 +30,7 @@ class SearchBox extends StatelessWidget {
           borderRadius: BorderRadius.circular(10.sp),
           borderSide: BorderSide(color: AppColors.mainColor),
         ),
-        hintText: "Search recipe",
+        hintText: "Search or pick a category",
         hintStyle: Styles.textStyleGrey11,
       ),
     );

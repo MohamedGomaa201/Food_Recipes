@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_recipes/core/themes/app_colors.dart';
 import 'package:food_recipes/core/themes/styles.dart';
+import 'package:food_recipes/features/home/presentation/view/widgets/category_selection_view.dart';
 import 'package:food_recipes/features/home/presentation/view/widgets/search_box.dart';
 import 'package:food_recipes/features/home/presentation/view/widgets/search_view.dart';
 
@@ -26,6 +27,12 @@ class HomeHeader extends StatelessWidget {
         ),
         SizedBox(height: 30.h),
         SearchBox(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => CategorySelectionView()),
+            );
+          },
           onSubmitted: (query) {
             if (query.trim().isEmpty) return;
             Navigator.push(

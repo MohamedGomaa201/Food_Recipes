@@ -1,3 +1,4 @@
+import 'package:food_recipes/features/recipe/data/models/category_model.dart';
 import 'package:food_recipes/features/recipe/data/models/recipe_model.dart';
 
 import '../services/api_service.dart';
@@ -37,6 +38,31 @@ class RecipeService {
     if (data != null && data['meals'] != null) {
       return (data['meals'] as List)
           .map((meal) => RecipeModel.fromJson(meal))
+          .toList();
+    }
+    return [];
+  }
+
+  /// Filter recipes by category
+  Future<List<RecipeModel>> filterByCategory(String category) async {
+    final data = await _apiService.getRequest(
+      "filter.php",
+      params: {"c": category},
+    );
+    if (data != null && data['meals'] != null) {
+      return (data['meals'] as List)
+          .map((meal) => RecipeModel.fromJson(meal))
+          .toList();
+    }
+    return [];
+  }
+
+  /// Fetch all categories (name + thumbnail + description)
+  Future<List<CategoryModel>> getCategories() async {
+    final data = await _apiService.getRequest("categories.php");
+    if (data != null && data['categories'] != null) {
+      return (data['categories'] as List)
+          .map((c) => CategoryModel.fromJson(c))
           .toList();
     }
     return [];
