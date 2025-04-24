@@ -1,7 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_recipes/core/themes/app_colors.dart';
+import 'package:food_recipes/features/auth/presentation/view/signin_view.dart';
+import 'package:food_recipes/features/home&search/presentation/view/home_view.dart';
 import 'package:food_recipes/features/splash/presentation/view/splash_view.dart';
 import 'package:food_recipes/firebase_options.dart';
 
@@ -34,7 +37,17 @@ class MainApp extends StatelessWidget {
           ),
           primaryColor: AppColors.mainColor,
         ),
-        home: SplashView(),
+        home: StreamBuilder<User?>(
+          stream: FirebaseAuth.instance.authStateChanges(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState != ConnectionState.active) {
+              return SplashView();
+            }
+            return snapshot.data != null
+                ? HomeView(user: snapshot.data!)
+                : SigninView();
+          },
+        ),
       ),
     );
   }

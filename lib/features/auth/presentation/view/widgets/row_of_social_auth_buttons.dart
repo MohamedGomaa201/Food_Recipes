@@ -6,7 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_recipes/core/constants/app_images.dart';
 import 'package:food_recipes/features/auth/presentation/view/helpers/show_snack_bar.dart';
 import 'package:food_recipes/features/auth/presentation/view/widgets/social_media_button.dart';
-import 'package:food_recipes/features/home/presentation/view/home_view.dart';
+import 'package:food_recipes/features/home&search/presentation/view/home_view.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class RowOfSocialAuthButtons extends StatelessWidget {

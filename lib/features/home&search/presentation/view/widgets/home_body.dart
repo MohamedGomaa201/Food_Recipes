@@ -5,9 +5,9 @@ import 'package:food_recipes/core/services/recipe_service.dart';
 import 'package:food_recipes/core/shared%20widgets/top_navigation_bar_tab.dart';
 import 'package:food_recipes/core/themes/app_colors.dart';
 import 'package:food_recipes/core/shared%20widgets/custom_tab_bar.dart';
-import 'package:food_recipes/features/home/presentation/view/widgets/home_header.dart';
-import 'package:food_recipes/features/home/presentation/view/widgets/popular_recipe_card_builder.dart';
-import 'package:food_recipes/features/home/presentation/view/widgets/recipe_card_builder.dart';
+import 'package:food_recipes/features/home&search/presentation/view/widgets/home_header.dart';
+import 'package:food_recipes/features/home&search/presentation/view/widgets/popular_recipe_card_builder.dart';
+import 'package:food_recipes/features/home&search/presentation/view/widgets/recipe_card_builder.dart';
 import 'package:food_recipes/features/recipe/data/models/recipe_model.dart';
 
 class HomeBody extends StatefulWidget {
@@ -62,7 +62,9 @@ class _HomeBodyState extends State<HomeBody>
   }
 
   Future<void> fetchRecipes(String area) async {
+    // If we already have data cached, show it
     if (cachedRecipes.containsKey(area)) {
+      if (!mounted) return;
       setState(() {
         _recipes = cachedRecipes[area]!;
         isLoading = false;
@@ -70,34 +72,35 @@ class _HomeBodyState extends State<HomeBody>
       return;
     }
 
+    if (!mounted) return;
     setState(() {
       isLoading = true;
     });
 
     try {
-      List<RecipeModel> mainRecipes = [];
-
+      List<RecipeModel> mainRecipes;
       if (area == "All") {
+        mainRecipes = [];
         for (int i = 0; i < 5; i++) {
           final randomRecipe = await recipeService.getRandomRecipe();
-          if (randomRecipe != null) {
-            mainRecipes.add(randomRecipe);
-          }
+          if (randomRecipe != null) mainRecipes.add(randomRecipe);
         }
       } else {
         mainRecipes = await recipeService.filterByArea(area);
       }
 
+      if (!mounted) return;
       setState(() {
         cachedRecipes[area] = mainRecipes;
         _recipes = mainRecipes;
         isLoading = false;
       });
     } catch (e) {
+      if (!mounted) return;
       setState(() {
         isLoading = false;
       });
-      Text("Error fetching recipes: $e");
+      // Optionally show an error widget or log
     }
   }
 

@@ -2,9 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_recipes/core/services/recipe_service.dart';
-import 'package:food_recipes/features/home/presentation/view/category_result_view.dart';
-import 'package:food_recipes/features/home/presentation/view/widgets/search_box.dart';
-import 'package:food_recipes/features/home/presentation/view/widgets/search_view.dart';
+import 'package:food_recipes/features/home&search/presentation/view/category_result_view.dart';
+import 'package:food_recipes/features/home&search/presentation/view/widgets/search_box.dart';
+import 'package:food_recipes/features/home&search/presentation/view/search_view.dart';
 import 'package:food_recipes/features/recipe/data/models/category_model.dart';
 import 'package:food_recipes/core/themes/app_colors.dart';
 

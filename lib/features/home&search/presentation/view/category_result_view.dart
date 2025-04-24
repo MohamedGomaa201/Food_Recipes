@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_recipes/features/home/presentation/view/widgets/category_results_body.dart';
+import 'package:food_recipes/features/home&search/presentation/view/widgets/category_results_body.dart';
 
 class CategoryResultsView extends StatelessWidget {
   final String category;

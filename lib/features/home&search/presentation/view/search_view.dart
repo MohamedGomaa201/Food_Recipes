@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_recipes/features/home/presentation/view/widgets/search_body.dart';
+import 'package:food_recipes/features/home&search/presentation/view/widgets/search_body.dart';
 
 class SearchView extends StatelessWidget {
   const SearchView({super.key, required this.query});

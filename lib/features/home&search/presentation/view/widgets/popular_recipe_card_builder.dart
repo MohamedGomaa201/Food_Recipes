@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_recipes/features/home/presentation/view/widgets/popular_recipe_card.dart';
+import 'package:food_recipes/features/home&search/presentation/view/widgets/popular_recipe_card.dart';
 import 'package:food_recipes/features/recipe/data/models/recipe_model.dart';
 
 class PopularRecipeCardBuilder extends StatelessWidget {

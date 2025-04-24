@@ -36,7 +36,9 @@ class CategoryResultsBodyState extends State<CategoryResultsBody> {
   @override
   Widget build(BuildContext context) {
     if (_isLoading) {
-      return const Center(child: CircularProgressIndicator());
+      return const Center(
+        child: CircularProgressIndicator(color: AppColors.mainColor),
+      );
     }
     if (_recipes.isEmpty) {
       return Center(child: Text('No recipes found in ${widget.category}'));
@@ -61,7 +63,6 @@ class CategoryResultsBodyState extends State<CategoryResultsBody> {
             style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500),
           ),
           onTap: () async {
-            // fetch full details
             showDialog(
               context: context,
               barrierDismissible: false,

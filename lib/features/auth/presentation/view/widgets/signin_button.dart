@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:food_recipes/core/shared%20widgets/custom_app_button.dart';
 import 'package:food_recipes/features/auth/presentation/view/helpers/show_snack_bar.dart';
-import 'package:food_recipes/features/home/presentation/view/home_view.dart';
+import 'package:food_recipes/features/home&search/presentation/view/home_view.dart';
 
 class SigninButton extends StatelessWidget {
   const SigninButton({
