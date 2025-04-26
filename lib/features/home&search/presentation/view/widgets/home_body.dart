@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_recipes/core/services/recipe_service.dart';
 import 'package:food_recipes/core/shared%20widgets/top_navigation_bar_tab.dart';
-import 'package:food_recipes/core/themes/app_colors.dart';
 import 'package:food_recipes/core/shared%20widgets/custom_tab_bar.dart';
 import 'package:food_recipes/features/home&search/presentation/view/widgets/home_header.dart';
 import 'package:food_recipes/features/home&search/presentation/view/widgets/popular_recipe_card_builder.dart';
+import 'package:food_recipes/features/home&search/presentation/view/widgets/popular_recipe_card_shimmer.dart';
 import 'package:food_recipes/features/home&search/presentation/view/widgets/recipe_card_builder.dart';
+import 'package:food_recipes/features/home&search/presentation/view/widgets/recipe_card_shimmer.dart';
 import 'package:food_recipes/features/recipe/data/models/recipe_model.dart';
 
 class HomeBody extends StatefulWidget {
@@ -135,7 +136,7 @@ class _HomeBodyState extends State<HomeBody>
 
   @override
   Widget build(BuildContext context) {
-    super.build(context); 
+    super.build(context);
     return SafeArea(
       child: ListView(
         padding: EdgeInsets.only(left: 30.w, right: 30.w, top: 20.h),
@@ -182,16 +183,16 @@ class _HomeBodyState extends State<HomeBody>
             ],
           ),
           isLoading
-              ? Center(
-                child: CircularProgressIndicator(color: AppColors.mainColor),
-              )
+              ? RecipeCardShimmer()
               : RecipeCardBuilder(recipes: _recipes),
           SizedBox(height: 20.h),
           Text(
             "Popular Recipes",
             style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w700),
           ),
-          PopularRecipeCardBuilder(recipes: _cachedPopularRecipes),
+          isPopularRecipesLoaded
+              ? PopularRecipeCardBuilder(recipes: _cachedPopularRecipes)
+              : PopularRecipeCardShimmer(),
         ],
       ),
     );
