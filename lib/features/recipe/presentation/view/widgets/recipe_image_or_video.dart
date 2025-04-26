@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_recipes/features/recipe/data/models/recipe_model.dart';
 import 'package:food_recipes/features/recipe/presentation/view/widgets/image_viewer.dart';
 import 'package:food_recipes/features/recipe/presentation/view/widgets/video_player.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
@@ -9,6 +10,7 @@ class RecipeImageOrVideo extends StatelessWidget {
   final String imageUrl;
   final String? videoId;
   final YoutubePlayer? youtubePlayer;
+  final RecipeModel recipe;
 
   const RecipeImageOrVideo({
     super.key,
@@ -17,6 +19,7 @@ class RecipeImageOrVideo extends StatelessWidget {
     required this.imageUrl,
     this.youtubePlayer,
     this.videoId,
+    required this.recipe,
   });
 
   @override
@@ -27,6 +30,7 @@ class RecipeImageOrVideo extends StatelessWidget {
           imageUrl: imageUrl,
           videoId: videoId,
           onToggleVideo: onToggleVideo,
+          recipe: recipe,
         );
   }
 }

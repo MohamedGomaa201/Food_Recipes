@@ -15,31 +15,25 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   int currentIndex = 0;
-  late List<Widget> pages;
+
   @override
-  void initState() {
-    super.initState();
-    pages = [
+  Widget build(BuildContext context) {
+    final pages = [
       HomeBody(user: widget.user),
       SavedBody(),
       ProfileBody(user: widget.user),
     ];
-  }
-
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
-      body: IndexedStack(index: currentIndex, children: pages),
+      body: IndexedStack(
+        index: currentIndex,
+        children: pages,
+      ),
       bottomNavigationBar: BottomNavigationBar(
+        currentIndex: currentIndex,
         backgroundColor: Colors.white,
         showSelectedLabels: false,
         showUnselectedLabels: false,
-        currentIndex: currentIndex,
-        onTap: (index) {
-          setState(() {
-            currentIndex = index;
-          });
-        },
+        onTap: (i) => setState(() => currentIndex = i),
         items: [
           BottomNavigationBarItem(
             icon: Image.asset(AppImages.navInActHome),

@@ -19,7 +19,11 @@ class HomeBody extends StatefulWidget {
 }
 
 class _HomeBodyState extends State<HomeBody>
-    with SingleTickerProviderStateMixin {
+    with
+        AutomaticKeepAliveClientMixin<HomeBody>,
+        SingleTickerProviderStateMixin {
+  @override
+  bool get wantKeepAlive => true;
   late TabController tabController;
   int selectedIndex = 0;
   final RecipeService recipeService = RecipeService();
@@ -62,7 +66,6 @@ class _HomeBodyState extends State<HomeBody>
   }
 
   Future<void> fetchRecipes(String area) async {
-    // If we already have data cached, show it
     if (cachedRecipes.containsKey(area)) {
       if (!mounted) return;
       setState(() {
@@ -100,15 +103,14 @@ class _HomeBodyState extends State<HomeBody>
       setState(() {
         isLoading = false;
       });
-      // Optionally show an error widget or log
     }
   }
 
   Future<void> fetchPopularRecipes() async {
     if (isPopularRecipesLoaded) return;
-
-    Set<String> usedRecipeIds = _recipes.map((recipe) => recipe.id).toSet();
-    List<RecipeModel> popularRecipes = [];
+    if (!mounted) return;
+    final usedRecipeIds = _recipes.map((r) => r.id).toSet();
+    final popularRecipes = <RecipeModel>[];
 
     while (popularRecipes.length < 5) {
       final randomRecipe = await recipeService.getRandomRecipe();
@@ -116,8 +118,9 @@ class _HomeBodyState extends State<HomeBody>
         popularRecipes.add(randomRecipe);
         usedRecipeIds.add(randomRecipe.id);
       }
+      if (!mounted) return;
     }
-
+    if (!mounted) return;
     setState(() {
       _cachedPopularRecipes = popularRecipes;
       isPopularRecipesLoaded = true;
@@ -132,6 +135,7 @@ class _HomeBodyState extends State<HomeBody>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context); 
     return SafeArea(
       child: ListView(
         padding: EdgeInsets.only(left: 30.w, right: 30.w, top: 20.h),
@@ -141,9 +145,7 @@ class _HomeBodyState extends State<HomeBody>
           CustomTabBar(
             tabController: tabController,
             onTap: (index) {
-              setState(() {
-                selectedIndex = index;
-              });
+              setState(() => selectedIndex = index);
               fetchRecipes(getSelectedArea());
             },
             tabs: [

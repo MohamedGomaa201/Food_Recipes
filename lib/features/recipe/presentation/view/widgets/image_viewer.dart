@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_recipes/core/shared%20widgets/add_to_favorite_button.dart';
 import 'package:food_recipes/core/themes/app_colors.dart';
+import 'package:food_recipes/features/recipe/data/models/recipe_model.dart';
 
 class ImageViewer extends StatelessWidget {
   const ImageViewer({
@@ -9,11 +10,13 @@ class ImageViewer extends StatelessWidget {
     required this.imageUrl,
     required this.videoId,
     required this.onToggleVideo,
+    required this.recipe,
   });
 
   final String imageUrl;
   final String? videoId;
   final VoidCallback onToggleVideo;
+  final RecipeModel recipe;
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +45,11 @@ class ImageViewer extends StatelessWidget {
           width: double.infinity,
           height: 225.h,
         ),
-        Positioned(bottom: 10.h, right: 7.w, child: AddToFavoriteButton()),
+        Positioned(
+          bottom: 10.h,
+          right: 7.w,
+          child: AddToFavoriteButton(recipe: recipe),
+        ),
         Positioned(
           top: 81.5.h,
           bottom: 81.5.h,

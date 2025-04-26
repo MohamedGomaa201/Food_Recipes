@@ -66,4 +66,26 @@ class RecipeModel {
       measure: extractMeasures(json),
     );
   }
+  Map<String, dynamic> toJson() {
+    final map = <String, dynamic>{
+      'idMeal': id,
+      'strMeal': name,
+      'strCategory': category,
+      'strTags': tags,
+      'strArea': area,
+      'strInstructions': instructions,
+      'strMealThumb': imageUrl,
+      'strYoutube': videoUrl,
+    };
+
+    for (var i = 0; i < ingredients.length; i++) {
+      map['strIngredient${i + 1}'] = ingredients[i].name;
+      map['strMeasure${i + 1}'] = ingredients[i].measure;
+    }
+    for (var i = ingredients.length; i < 20; i++) {
+      map['strIngredient${i + 1}'] = '';
+      map['strMeasure${i + 1}'] = '';
+    }
+    return map;
+  }
 }

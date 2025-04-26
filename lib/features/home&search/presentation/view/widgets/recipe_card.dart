@@ -40,15 +40,19 @@ class RecipeCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(15.r),
           ),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(15.r),
                   topRight: Radius.circular(15.r),
                 ),
-                child: Image.network("${recipe.imageUrl}/small"),
+                child: Image.network(
+                  "${recipe.imageUrl}/small",
+                  fit: BoxFit.fitWidth,
+                ),
               ),
-              SizedBox(height: 10.h),
+              SizedBox(height: 5.h),
               Spacer(),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -70,7 +74,7 @@ class RecipeCard extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  AddToFavoriteButton(),
+                  AddToFavoriteButton(recipe: recipe),
                   Icon(Icons.arrow_forward_ios_sharp, color: AppColors.grey3),
                 ],
               ),

@@ -96,6 +96,7 @@ class _RecipeBodyState extends State<RecipeBody>
             imageUrl: widget.recipe.imageUrl,
             videoId: videoId.isNotEmpty ? videoId : null,
             youtubePlayer: videoId.isNotEmpty ? youtubePlayer : null,
+            recipe: widget.recipe,
           ),
           SizedBox(height: 7.h),
           RecipeName(name: widget.recipe.name),
