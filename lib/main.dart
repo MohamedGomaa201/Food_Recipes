@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:food_recipes/core/themes/app_colors.dart';
 import 'package:food_recipes/features/auth/presentation/view/signin_view.dart';
 import 'package:food_recipes/features/home&search/presentation/view/home_view.dart';
 import 'package:food_recipes/features/saved/data/favorites_provider.dart';
@@ -29,6 +30,15 @@ class MainApp extends StatelessWidget {
               userId: FirebaseAuth.instance.currentUser!.uid,
             ),
         child: MaterialApp(
+          theme: ThemeData(
+            fontFamily: "Poppins",
+            scaffoldBackgroundColor: Colors.white,
+            appBarTheme: AppBarTheme(
+              color: Colors.white,
+              surfaceTintColor: Colors.white,
+            ),
+            primaryColor: AppColors.mainColor,
+          ),
           home: StreamBuilder<User?>(
             stream: FirebaseAuth.instance.authStateChanges(),
             builder: (ctx, snapshot) {
