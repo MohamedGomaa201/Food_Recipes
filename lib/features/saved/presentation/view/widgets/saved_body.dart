@@ -16,8 +16,8 @@ class SavedBody extends StatelessWidget {
     }
     return ListView.separated(
       itemCount: list.length,
-      separatorBuilder: (_, __) => const Divider(),
-      itemBuilder: (ctx, i) {
+      separatorBuilder: (context, i) => const Divider(),
+      itemBuilder: (context, i) {
         final r = list[i];
         return ListTile(
           leading: Image.network(
@@ -35,7 +35,7 @@ class SavedBody extends StatelessWidget {
           onTap:
               () => Navigator.push(
                 context,
-                MaterialPageRoute(builder: (_) => RecipeView(recipe: r)),
+                MaterialPageRoute(builder: (context) => RecipeView(recipe: r)),
               ),
         );
       },

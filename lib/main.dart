@@ -26,7 +26,7 @@ class MainApp extends StatelessWidget {
       minTextAdapt: true,
       child: ChangeNotifierProvider(
         create:
-            (_) => FavoritesProvider(
+            (context) => FavoritesProvider(
               userId: FirebaseAuth.instance.currentUser!.uid,
             ),
         child: MaterialApp(
@@ -41,7 +41,7 @@ class MainApp extends StatelessWidget {
           ),
           home: StreamBuilder<User?>(
             stream: FirebaseAuth.instance.authStateChanges(),
-            builder: (ctx, snapshot) {
+            builder: (context, snapshot) {
               if (snapshot.connectionState != ConnectionState.active) {
                 return const SplashView();
               }

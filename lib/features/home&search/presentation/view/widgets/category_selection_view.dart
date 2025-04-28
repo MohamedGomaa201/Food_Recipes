@@ -39,7 +39,7 @@ class CategorySelectionViewState extends State<CategorySelectionView> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (_) => SearchView(query: query.trim()),
+                    builder: (context) => SearchView(query: query.trim()),
                   ),
                 );
               },
@@ -61,7 +61,7 @@ class CategorySelectionViewState extends State<CategorySelectionView> {
                 return ListView.builder(
                   itemCount: cats.length,
                   padding: EdgeInsets.symmetric(vertical: 8.h),
-                  itemBuilder: (_, i) {
+                  itemBuilder: (context, i) {
                     final cat = cats[i];
                     return ListTile(
                       leading: Image.network(
@@ -82,7 +82,7 @@ class CategorySelectionViewState extends State<CategorySelectionView> {
                           context,
                           MaterialPageRoute(
                             builder:
-                                (_) => CategoryResultsView(category: cat.name),
+                                (context) => CategoryResultsView(category: cat.name),
                           ),
                         );
                       },

@@ -14,9 +14,9 @@ class CategoryResultsBody extends StatefulWidget {
 }
 
 class CategoryResultsBodyState extends State<CategoryResultsBody> {
-  final RecipeService _service = RecipeService();
-  bool _isLoading = true;
-  List<RecipeModel> _recipes = [];
+  final RecipeService service = RecipeService();
+  bool isLoading = true;
+  List<RecipeModel> recipes = [];
 
   @override
   void initState() {
@@ -25,28 +25,28 @@ class CategoryResultsBodyState extends State<CategoryResultsBody> {
   }
 
   Future<void> _loadCategory() async {
-    setState(() => _isLoading = true);
-    final list = await _service.filterByCategory(widget.category);
+    setState(() => isLoading = true);
+    final list = await service.filterByCategory(widget.category);
     setState(() {
-      _recipes = list;
-      _isLoading = false;
+      recipes = list;
+      isLoading = false;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    if (_isLoading) {
+    if (isLoading) {
       return const Center(
         child: CircularProgressIndicator(color: AppColors.mainColor),
       );
     }
-    if (_recipes.isEmpty) {
+    if (recipes.isEmpty) {
       return Center(child: Text('No recipes found in ${widget.category}'));
     }
     return ListView.builder(
-      itemCount: _recipes.length,
+      itemCount: recipes.length,
       itemBuilder: (context, index) {
-        final brief = _recipes[index];
+        final brief = recipes[index];
         return ListTile(
           contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
           leading: ClipRRect(
@@ -67,19 +67,19 @@ class CategoryResultsBodyState extends State<CategoryResultsBody> {
               context: context,
               barrierDismissible: false,
               builder:
-                  (_) => const Center(
+                  (context) => const Center(
                     child: CircularProgressIndicator(
                       color: AppColors.mainColor,
                     ),
                   ),
             );
-            final full = await _service.getRecipeDetails(brief.id);
-            Navigator.pop(context); // remove loading dialog
+            final full = await service.getRecipeDetails(brief.id);
+            Navigator.pop(context);
 
             if (full != null) {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (_) => RecipeView(recipe: full)),
+                MaterialPageRoute(builder: (context) => RecipeView(recipe: full)),
               );
             } else {
               ScaffoldMessenger.of(context).showSnackBar(

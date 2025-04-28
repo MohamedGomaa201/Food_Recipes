@@ -30,7 +30,7 @@ class HomeHeader extends StatelessWidget {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (_) => CategorySelectionView()),
+              MaterialPageRoute(builder: (context) => CategorySelectionView()),
             );
           },
           onSubmitted: (query) {
@@ -38,7 +38,7 @@ class HomeHeader extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (_) => SearchView(query: query.trim()),
+                builder: (context) => SearchView(query: query.trim()),
               ),
             );
           },

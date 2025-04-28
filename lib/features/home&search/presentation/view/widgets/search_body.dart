@@ -64,7 +64,7 @@ class _SearchBodyState extends State<SearchBody> {
             if (full != null) {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (_) => RecipeView(recipe: full)),
+                MaterialPageRoute(builder: (context) => RecipeView(recipe: full)),
               );
             }
           },

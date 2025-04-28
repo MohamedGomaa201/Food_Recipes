@@ -6,21 +6,21 @@ class FavoritesDb {
   FavoritesDb._();
   static final FavoritesDb instance = FavoritesDb._();
 
-  Database? _db;
+  Database? myDb;
   Future<Database> get db async {
-    if (_db != null) return _db!;
+    if (myDb != null) return myDb!;
     final docs = await getApplicationDocumentsDirectory();
     final path = join(docs.path, 'favorites.db');
-    _db = await openDatabase(
+    myDb = await openDatabase(
       path,
       version: 3,
-      onCreate: _onCreate,
+      onCreate: onCreate,
       onUpgrade: _onUpgrade,
     );
-    return _db!;
+    return myDb!;
   }
 
-  Future _onCreate(Database db, int version) async {
+  Future onCreate(Database db, int version) async {
     await db.execute('''
       CREATE TABLE favorites(
         idMeal   TEXT,
@@ -35,7 +35,7 @@ class FavoritesDb {
   Future _onUpgrade(Database db, int oldVersion, int newVersion) async {
     if (oldVersion < 3) {
       await db.execute('DROP TABLE IF EXISTS favorites');
-      await _onCreate(db, newVersion);
+      await onCreate(db, newVersion);
     }
   }
 }

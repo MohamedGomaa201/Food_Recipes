@@ -17,7 +17,7 @@ class PopularRecipeCardShimmer extends StatelessWidget {
           itemCount: 3,
           padding: EdgeInsets.only(top: 40.h, bottom: 25.h),
           itemBuilder:
-              (_, __) => Padding(
+              (context, i) => Padding(
                 padding: EdgeInsets.only(bottom: 10.h),
                 child: SizedBox(
                   height: 95.h,
